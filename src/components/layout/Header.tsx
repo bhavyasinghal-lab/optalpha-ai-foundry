@@ -59,7 +59,7 @@ export const Header = () => {
                 className={`relative text-sm font-medium transition-colors hover:text-accent ${
                   location.pathname === link.path
                     ? "text-accent"
-                    : "text-foreground/80"
+                    : isScrolled ? "text-foreground/80" : "text-white/90"
                 }`}
               >
                 {link.name}
@@ -77,12 +77,12 @@ export const Header = () => {
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-4">
             <Link to="/contact">
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" className={isScrolled ? "" : "text-white hover:text-white hover:bg-white/10"}>
                 Contact Us
               </Button>
             </Link>
             <Link to="/contact">
-              <Button size="sm" className="bg-accent hover:bg-teal-light text-accent-foreground">
+              <Button size="sm" className="bg-accent hover:bg-crimson-light text-accent-foreground">
                 Request Demo
               </Button>
             </Link>
@@ -91,7 +91,7 @@ export const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-foreground"
+            className={`lg:hidden p-2 ${isScrolled ? "text-foreground" : "text-white"}`}
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -136,7 +136,7 @@ export const Header = () => {
                   </Button>
                 </Link>
                 <Link to="/contact">
-                  <Button className="w-full bg-accent hover:bg-teal-light text-accent-foreground">
+                  <Button className="w-full bg-accent hover:bg-crimson-light text-accent-foreground">
                     Request Demo
                   </Button>
                 </Link>
