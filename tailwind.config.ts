@@ -60,18 +60,18 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // OptAlpha custom colors
-        navy: {
-          DEFAULT: "hsl(var(--navy))",
-          light: "hsl(var(--navy-light))",
-          dark: "hsl(var(--navy-dark))",
+        // OptAlpha custom colors - Crimson theme
+        crimson: {
+          DEFAULT: "hsl(var(--crimson))",
+          light: "hsl(var(--crimson-light))",
+          dark: "hsl(var(--crimson-dark))",
+          glow: "hsl(var(--crimson-glow))",
         },
-        teal: {
-          DEFAULT: "hsl(var(--teal))",
-          light: "hsl(var(--teal-light))",
-          glow: "hsl(var(--teal-glow))",
+        slate: {
+          DEFAULT: "hsl(var(--slate))",
+          light: "hsl(var(--slate-light))",
         },
-        electric: "hsl(var(--electric))",
+        charcoal: "hsl(var(--charcoal))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -104,8 +104,16 @@ export default {
           "100%": { transform: "scale(1)", opacity: "1" },
         },
         "glow-pulse": {
-          "0%, 100%": { boxShadow: "0 0 20px hsl(185 80% 40% / 0.3)" },
-          "50%": { boxShadow: "0 0 40px hsl(185 80% 40% / 0.5)" },
+          "0%, 100%": { boxShadow: "0 0 20px hsl(0 70% 35% / 0.3)" },
+          "50%": { boxShadow: "0 0 40px hsl(0 70% 35% / 0.5)" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-15px)" },
+        },
+        "pulse-ring": {
+          "0%": { transform: "scale(1)", opacity: "1" },
+          "100%": { transform: "scale(1.5)", opacity: "0" },
         },
       },
       animation: {
@@ -115,7 +123,9 @@ export default {
         "fade-in-up": "fade-in-up 0.8s ease-out forwards",
         "slide-in-right": "slide-in-right 0.5s ease-out",
         "scale-in": "scale-in 0.3s ease-out",
-        "glow-pulse": "glow-pulse 2s ease-in-out infinite",
+        "glow-pulse": "glow-pulse 3s ease-in-out infinite",
+        "float": "float 6s ease-in-out infinite",
+        "pulse-ring": "pulse-ring 2s ease-out infinite",
       },
     },
   },

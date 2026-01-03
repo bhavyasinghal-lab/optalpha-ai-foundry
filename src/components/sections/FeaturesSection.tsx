@@ -69,9 +69,10 @@ export const FeaturesSection = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group p-8 rounded-2xl bg-card border border-border hover:border-accent/30 transition-all duration-300 card-hover"
+              whileHover={{ y: -6, transition: { duration: 0.2 } }}
+              className="group p-8 rounded-2xl bg-card border border-border hover:border-accent/30 transition-all duration-300 hover:shadow-lg"
             >
-              <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
+              <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors group-hover:scale-110 duration-300">
                 <feature.icon className="w-7 h-7 text-accent" />
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-3">
