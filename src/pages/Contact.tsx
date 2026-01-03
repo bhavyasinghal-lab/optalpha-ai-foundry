@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, MessageSquare, Send, CheckCircle } from "lucide-react";
+import { Mail, MessageSquare, Send, CheckCircle, MapPin } from "lucide-react";
 import { toast } from "sonner";
+import heroImage from "@/assets/hero-ai-visual.png";
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,8 +28,15 @@ const Contact = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="pt-32 pb-20 gradient-hero relative overflow-hidden">
-        <div className="absolute inset-0 neural-grid opacity-30" />
+      <section className="pt-24 md:pt-32 pb-16 md:pb-20 relative overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/80 via-charcoal/60 to-charcoal/90" />
+        <div className="absolute inset-0 neural-grid opacity-20" />
+        
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -36,24 +44,24 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <span className="inline-block text-teal-light font-semibold text-sm uppercase tracking-wider mb-4">
+            <span className="inline-block text-crimson-light font-semibold text-xs md:text-sm uppercase tracking-wider mb-3 md:mb-4">
               Contact Us
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6">
+            <h1 className="text-fluid-4xl md:text-fluid-5xl font-bold text-white mb-4 md:mb-6">
               Let's Start a Conversation
             </h1>
-            <p className="text-primary-foreground/70 text-lg md:text-xl max-w-2xl mx-auto">
+            <p className="text-white/70 text-fluid-base md:text-fluid-lg max-w-2xl mx-auto">
               Whether you're interested in a demo, have questions about our technology, or want to explore partnership opportunities, we'd love to hear from you.
             </p>
           </motion.div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-24 md:h-32 bg-gradient-to-t from-background to-transparent" />
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-24 bg-background">
+      <section className="py-fluid bg-background">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
             {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
@@ -61,50 +69,57 @@ const Contact = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl font-bold text-foreground mb-6">
+              <h2 className="text-fluid-2xl md:text-fluid-3xl font-bold text-foreground mb-4 md:mb-6">
                 Get in Touch
               </h2>
-              <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
+              <p className="text-muted-foreground text-fluid-base mb-6 md:mb-8 leading-relaxed">
                 We're here to help you explore how OptAlpha can enhance your trading and investment analysis. Reach out and our team will respond promptly.
               </p>
 
-              <div className="space-y-6 mb-12">
-                <div className="flex items-start gap-4 p-6 rounded-2xl bg-card border border-border">
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-accent" />
+              <div className="space-y-4 md:space-y-6 mb-8 md:mb-12">
+                <div className="flex items-start gap-3 md:gap-4 p-4 md:p-6 rounded-xl md:rounded-2xl bg-card border border-border">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-5 h-5 md:w-6 md:h-6 text-accent" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground mb-1">Email Us</h3>
-                    <a href="mailto:contact@optalpha.com" className="text-accent hover:underline">
+                    <h3 className="font-semibold text-foreground mb-1 text-sm md:text-base">Email Us</h3>
+                    <a href="mailto:contact@optalpha.com" className="text-accent hover:underline text-sm md:text-base">
                       contact@optalpha.com
                     </a>
-                    <p className="text-muted-foreground text-sm mt-1">
+                    <p className="text-muted-foreground text-xs md:text-sm mt-1">
                       We aim to respond within 24 hours
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 p-6 rounded-2xl bg-card border border-border">
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
-                    <MessageSquare className="w-6 h-6 text-accent" />
+                <div className="flex items-start gap-3 md:gap-4 p-4 md:p-6 rounded-xl md:rounded-2xl bg-card border border-border">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                    <MessageSquare className="w-5 h-5 md:w-6 md:h-6 text-accent" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground mb-1">Request a Demo</h3>
-                    <p className="text-muted-foreground text-sm">
+                    <h3 className="font-semibold text-foreground mb-1 text-sm md:text-base">Request a Demo</h3>
+                    <p className="text-muted-foreground text-xs md:text-sm">
                       Fill out the form and we'll schedule a personalized walkthrough of our platform.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="p-6 rounded-2xl bg-muted/50 border border-border">
-                <h3 className="font-semibold text-foreground mb-2">Office Location</h3>
-                <p className="text-muted-foreground">
-                  Delhi, India
-                </p>
-                <p className="text-muted-foreground text-sm mt-2">
-                  Founded 2021 • Technology Provider
-                </p>
+              <div className="p-4 md:p-6 rounded-xl md:rounded-2xl bg-muted/50 border border-border">
+                <div className="flex items-start gap-3 md:gap-4">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-5 h-5 md:w-6 md:h-6 text-accent" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-1 text-sm md:text-base">Office Location</h3>
+                    <p className="text-muted-foreground text-sm md:text-base">
+                      Delhi, India
+                    </p>
+                    <p className="text-muted-foreground text-xs md:text-sm mt-1">
+                      Founded 2021 • Technology Provider
+                    </p>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
@@ -115,16 +130,16 @@ const Contact = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="p-8 rounded-3xl bg-card border border-border shadow-lg">
+              <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-card border border-border shadow-lg">
                 {isSubmitted ? (
-                  <div className="text-center py-12">
-                    <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6">
-                      <CheckCircle className="w-8 h-8 text-accent" />
+                  <div className="text-center py-8 md:py-12">
+                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4 md:mb-6">
+                      <CheckCircle className="w-6 h-6 md:w-8 md:h-8 text-accent" />
                     </div>
-                    <h3 className="text-2xl font-bold text-foreground mb-4">
+                    <h3 className="text-fluid-xl md:text-fluid-2xl font-bold text-foreground mb-3 md:mb-4">
                       Thank You!
                     </h3>
-                    <p className="text-muted-foreground mb-6">
+                    <p className="text-muted-foreground text-sm md:text-base mb-4 md:mb-6">
                       Your message has been sent successfully. Our team will review your inquiry and get back to you shortly.
                     </p>
                     <Button
@@ -136,76 +151,76 @@ const Contact = () => {
                   </div>
                 ) : (
                   <>
-                    <h3 className="text-2xl font-bold text-foreground mb-6">
+                    <h3 className="text-fluid-xl md:text-fluid-2xl font-bold text-foreground mb-4 md:mb-6">
                       Send Us a Message
                     </h3>
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="firstName">First Name</Label>
+                    <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+                        <div className="space-y-1.5 md:space-y-2">
+                          <Label htmlFor="firstName" className="text-xs md:text-sm">First Name</Label>
                           <Input
                             id="firstName"
                             placeholder="John"
                             required
-                            className="bg-background"
+                            className="bg-background text-sm md:text-base h-10 md:h-11"
                           />
                         </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="lastName">Last Name</Label>
+                        <div className="space-y-1.5 md:space-y-2">
+                          <Label htmlFor="lastName" className="text-xs md:text-sm">Last Name</Label>
                           <Input
                             id="lastName"
                             placeholder="Doe"
                             required
-                            className="bg-background"
+                            className="bg-background text-sm md:text-base h-10 md:h-11"
                           />
                         </div>
                       </div>
                       
-                      <div className="space-y-2">
-                        <Label htmlFor="email">Email</Label>
+                      <div className="space-y-1.5 md:space-y-2">
+                        <Label htmlFor="email" className="text-xs md:text-sm">Email</Label>
                         <Input
                           id="email"
                           type="email"
                           placeholder="john@example.com"
                           required
-                          className="bg-background"
+                          className="bg-background text-sm md:text-base h-10 md:h-11"
                         />
                       </div>
                       
-                      <div className="space-y-2">
-                        <Label htmlFor="company">Company (Optional)</Label>
+                      <div className="space-y-1.5 md:space-y-2">
+                        <Label htmlFor="company" className="text-xs md:text-sm">Company (Optional)</Label>
                         <Input
                           id="company"
                           placeholder="Your company name"
-                          className="bg-background"
+                          className="bg-background text-sm md:text-base h-10 md:h-11"
                         />
                       </div>
                       
-                      <div className="space-y-2">
-                        <Label htmlFor="subject">Subject</Label>
+                      <div className="space-y-1.5 md:space-y-2">
+                        <Label htmlFor="subject" className="text-xs md:text-sm">Subject</Label>
                         <Input
                           id="subject"
                           placeholder="How can we help?"
                           required
-                          className="bg-background"
+                          className="bg-background text-sm md:text-base h-10 md:h-11"
                         />
                       </div>
                       
-                      <div className="space-y-2">
-                        <Label htmlFor="message">Message</Label>
+                      <div className="space-y-1.5 md:space-y-2">
+                        <Label htmlFor="message" className="text-xs md:text-sm">Message</Label>
                         <Textarea
                           id="message"
                           placeholder="Tell us more about your needs..."
-                          rows={5}
+                          rows={4}
                           required
-                          className="bg-background resize-none"
+                          className="bg-background resize-none text-sm md:text-base"
                         />
                       </div>
                       
                       <Button
                         type="submit"
                         size="lg"
-                        className="w-full bg-accent hover:bg-teal-light text-accent-foreground"
+                        className="w-full bg-accent hover:bg-crimson-light text-accent-foreground h-11 md:h-12 text-sm md:text-base"
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? (
@@ -213,7 +228,7 @@ const Contact = () => {
                         ) : (
                           <>
                             Send Message
-                            <Send className="ml-2 w-5 h-5" />
+                            <Send className="ml-2 w-4 h-4 md:w-5 md:h-5" />
                           </>
                         )}
                       </Button>
@@ -227,9 +242,9 @@ const Contact = () => {
       </section>
 
       {/* Disclaimer */}
-      <section className="py-12 bg-muted/30">
+      <section className="py-8 md:py-12 bg-muted/30">
         <div className="container mx-auto px-4 md:px-6">
-          <p className="text-muted-foreground/70 text-sm text-center max-w-3xl mx-auto">
+          <p className="text-muted-foreground/70 text-xs md:text-sm text-center max-w-3xl mx-auto">
             OptAlpha is a technology provider. We do not provide investment advice, brokerage services, or financial recommendations. All inquiries are for technology and platform-related discussions only.
           </p>
         </div>
