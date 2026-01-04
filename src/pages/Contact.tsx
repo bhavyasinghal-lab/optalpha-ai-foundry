@@ -7,7 +7,19 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Mail, MessageSquare, Send, CheckCircle, MapPin } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
 import heroImage from "@/assets/hero-ai-visual.png";
+
+// Validation schema
+const contactSchema = z.object({
+  firstName: z.string().trim().min(1, "First name is required").max(100, "First name must be less than 100 characters"),
+  lastName: z.string().trim().min(1, "Last name is required").max(100, "Last name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  company: z.string().trim().max(200, "Company name must be less than 200 characters").optional().or(z.literal("")),
+  subject: z.string().trim().min(1, "Subject is required").max(200, "Subject must be less than 200 characters"),
+  message: z.string().trim().min(1, "Message is required").max(5000, "Message must be less than 5000 characters"),
+});
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -17,12 +29,54 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    toast.success("Message sent successfully! We'll be in touch soon.");
+    const formData = new FormData(e.currentTarget);
+    const rawData = {
+      firstName: formData.get("firstName") as string,
+      lastName: formData.get("lastName") as string,
+      email: formData.get("email") as string,
+      company: formData.get("company") as string,
+      subject: formData.get("subject") as string,
+      message: formData.get("message") as string,
+    };
+
+    // Validate input
+    const validation = contactSchema.safeParse(rawData);
+    if (!validation.success) {
+      const firstError = validation.error.errors[0]?.message || "Invalid input";
+      toast.error(firstError);
+      setIsSubmitting(false);
+      return;
+    }
+
+    const validatedData = validation.data;
+
+    try {
+      const { error } = await supabase
+        .from("contact_submissions")
+        .insert({
+          first_name: validatedData.firstName,
+          last_name: validatedData.lastName,
+          email: validatedData.email,
+          company: validatedData.company || null,
+          subject: validatedData.subject,
+          message: validatedData.message,
+        });
+
+      if (error) {
+        console.error("Submission error:", error);
+        toast.error("Failed to send message. Please try again.");
+        setIsSubmitting(false);
+        return;
+      }
+
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      toast.success("Message sent successfully! We'll be in touch soon.");
+    } catch (err) {
+      console.error("Unexpected error:", err);
+      toast.error("An unexpected error occurred. Please try again.");
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -160,6 +214,7 @@ const Contact = () => {
                           <Label htmlFor="firstName" className="text-xs md:text-sm">First Name</Label>
                           <Input
                             id="firstName"
+                            name="firstName"
                             placeholder="John"
                             required
                             className="bg-background text-sm md:text-base h-10 md:h-11"
@@ -169,6 +224,7 @@ const Contact = () => {
                           <Label htmlFor="lastName" className="text-xs md:text-sm">Last Name</Label>
                           <Input
                             id="lastName"
+                            name="lastName"
                             placeholder="Doe"
                             required
                             className="bg-background text-sm md:text-base h-10 md:h-11"
@@ -180,6 +236,7 @@ const Contact = () => {
                         <Label htmlFor="email" className="text-xs md:text-sm">Email</Label>
                         <Input
                           id="email"
+                          name="email"
                           type="email"
                           placeholder="john@example.com"
                           required
@@ -191,6 +248,7 @@ const Contact = () => {
                         <Label htmlFor="company" className="text-xs md:text-sm">Company (Optional)</Label>
                         <Input
                           id="company"
+                          name="company"
                           placeholder="Your company name"
                           className="bg-background text-sm md:text-base h-10 md:h-11"
                         />
@@ -200,6 +258,7 @@ const Contact = () => {
                         <Label htmlFor="subject" className="text-xs md:text-sm">Subject</Label>
                         <Input
                           id="subject"
+                          name="subject"
                           placeholder="How can we help?"
                           required
                           className="bg-background text-sm md:text-base h-10 md:h-11"
@@ -210,6 +269,7 @@ const Contact = () => {
                         <Label htmlFor="message" className="text-xs md:text-sm">Message</Label>
                         <Textarea
                           id="message"
+                          name="message"
                           placeholder="Tell us more about your needs..."
                           rows={4}
                           required
