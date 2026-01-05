@@ -57,11 +57,12 @@ export const Header = () => {
           }`}
         >
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center gap-2 group logo-static">
             <motion.img 
               src={logo} 
               alt="OptAlpha Logo" 
               className="h-8 md:h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+              style={{ filter: 'none' }}
               whileHover={{ rotate: [0, -5, 5, 0] }}
               transition={{ duration: 0.5 }}
             />
