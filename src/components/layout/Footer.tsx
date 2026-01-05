@@ -26,11 +26,12 @@ export const Footer = () => {
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1 lg:col-span-1">
-            <Link to="/" className="inline-block mb-4">
+            <Link to="/" className="inline-block mb-4 logo-static">
               <img 
                 src={logo} 
                 alt="OptAlpha" 
                 className="h-8 md:h-10 w-auto"
+                style={{ filter: 'none' }}
               />
             </Link>
             <p className="text-white/70 text-xs md:text-sm leading-relaxed mb-4 md:mb-6">
